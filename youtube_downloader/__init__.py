@@ -3,11 +3,15 @@ import os
 
 
 def download_video(url):
-    if not url.startswith("https://www.youtube.com") and not url.startswith("https://youtube.com"):
+    print("скачиваю", url)
+    if (not url.startswith("https://www.youtube.com/shorts") and
+    not url.startswith("https://www.youtube.com/watch?") and
+    not url.startswith("https://youtube.com/shorts") and
+    not url.startswith("https://youtube.com/watch?")):
         raise ValueError("Not youtube link")
     try:
         # Папка для загрузки
-        download_folder = "tg_dl_downloads"
+        download_folder = "downloads"
         if not os.path.exists(download_folder):
             os.makedirs(download_folder)
 
@@ -16,7 +20,7 @@ def download_video(url):
             'format': 'bestvideo+bestaudio/best',
             'retries': 20,
             'outtmpl': f'{download_folder}/%(title)s.%(ext)s',
-            'noplaylist': True,
+            'noplaylist': True
         }
 
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
