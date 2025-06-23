@@ -1,5 +1,6 @@
 import os
 import instaloader
+import logging
 
 
 def download_video(url, username=None, password=None):
@@ -14,8 +15,16 @@ def download_video(url, username=None, password=None):
         raise ValueError("Not an Instagram Reels link")
 
     try:
-        loader = instaloader.Instaloader()
+        logging.getLogger("instaloader").setLevel(logging.CRITICAL)
 
+        loader = instaloader.Instaloader(
+            download_pictures=False,
+            download_video_thumbnails=False,
+            download_geotags=False,
+            download_comments=False,
+            save_metadata=False,
+            quiet=True
+        )
         # Авторизация, если переданы логин и пароль
         if username and password:
             loader.login(username, password)
