@@ -30,7 +30,11 @@ def download_video(url, username=None, password=None):
 
         # Удаление ненужных файлов
         for file in os.listdir(download_folder):
-            if file.endswith(".jpg") or file.endswith(".json.xz") or file.endswith(".txt"):
+            if (
+                file.endswith(".jpg")
+                or file.endswith(".json.xz")
+                or file.endswith(".txt")
+            ):
                 os.remove(os.path.join(download_folder, file))
 
         # Формирование имени видеофайла
@@ -43,4 +47,3 @@ def download_video(url, username=None, password=None):
         raise RuntimeError("Connection error while accessing Instagram.")
     except Exception as e:
         raise RuntimeError(f"Download error: {e}")
-

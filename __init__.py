@@ -1,5 +1,4 @@
 import json
-from typing import Any
 import telebot
 import os
 from video_downloader_bot.insta_downloader import download_video as insta_download
@@ -124,4 +123,3 @@ if __name__ == '__main__':
     else:
         bot = Bot(token)
         bot.run()
-
