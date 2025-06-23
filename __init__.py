@@ -1,7 +1,8 @@
 import json
 from typing import Any
+import telebot
 
-def read_json_file(file_path: str) -> Any | None:
+def read_json_file(file_path: str):
     """
     Читает и возвращает данные из JSON-файла.
 
@@ -26,3 +27,25 @@ def read_json_file(file_path: str) -> Any | None:
     
     return None
 
+
+
+class Bot:
+    def __init__(self, token: str):
+        self.bot = telebot.TeleBot(token)
+        self.register_handlers()
+
+    def start(self, message):
+        """Обработчик команды /start"""
+        self.bot.reply_to(
+            message,
+            "Привет! Отправь мне ссылку на YouTube Shorts, и я скачаю видео для тебя, чтобы ты мог отправить его)"
+        )
+
+    def register_handlers(self):
+        """Регистрируем все обработчики"""
+        self.bot.message_handler(commands=['start'])(self.start)
+
+    def run(self):
+        """Запуск бота"""
+        print("Бот запущен...")
+        self.bot.polling(none_stop=True)

@@ -5,6 +5,8 @@ name = "pypi"
 
 [packages]
 yt-dlp = "*"
+instaloader = "*"
+telebot = "*"
 
 [dev-packages]
 
