@@ -13,7 +13,7 @@ def download_video(url):
         raise ValueError("Not youtube link")
     try:
         # Папка для загрузки
-        download_folder = "downloads"
+        download_folder = "tg_dl_downloads"
         if not os.path.exists(download_folder):
             os.makedirs(download_folder)
 

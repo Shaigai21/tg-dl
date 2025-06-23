@@ -21,7 +21,7 @@ def download_video(url, username=None, password=None):
         post = instaloader.Post.from_shortcode(loader.context, post_id)
 
         # Создание папки для загрузок
-        download_folder = "downloads"
+        download_folder = "tg_dl_downloads"
         if not os.path.exists(download_folder):
             os.makedirs(download_folder)
 

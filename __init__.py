@@ -1,9 +1,9 @@
 import json
 import telebot
 import os
-from video_downloader_bot.insta_downloader import download_video as insta_download
-from video_downloader_bot.tiktak_downloader import download_video as tiktak_download
-from video_downloader_bot.youtube_downloader import download_video as youtube_download
+from insta_downloader import download_video as insta_download
+from tiktok_downloader import download_video as tiktok_download
+from youtube_downloader import download_video as youtube_download
 
 
 def _(text):
@@ -53,7 +53,7 @@ class Bot:
             download_func = insta_download
         elif 'tiktok.com' in url:
             service = "TikTok"
-            download_func = tiktak_download
+            download_func = tiktok_download
         else:
             # Только в личных — отправляем ответ об ошибке
             if message.chat.type == 'private':
