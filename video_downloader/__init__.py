@@ -37,14 +37,20 @@ class Bot:
         self.register_handlers()
 
     def start(self, message):
-        """Обработчик команды /start"""
+        """
+        Обработчик команды /start.
+        Отвечает приветственным сообщением.
+        """
         self.bot.reply_to(
             message,
             _("Привет! Отправь мне ссылку на YouTube Shorts, Instagram или TikTok, и я скачаю видео для тебя.")
         )
 
     def handle_video_links(self, message):
-        """Обработчик ссылок на видео"""
+        """
+        Обрабатывает сообщения с ссылками на видео.
+        Определяет платформу, скачивает видео и отправляет его пользователю.
+        """
         url = message.text.strip()
 
         # Определение сервиса
@@ -113,7 +119,7 @@ class Bot:
                 self.handle_video_links(message)
 
     def run(self):
-        """Запуск бота"""
+        """Запускает бота в режиме постоянного опроса."""
         print("Бот запущен...")
         self.bot.polling(none_stop=True)
 
