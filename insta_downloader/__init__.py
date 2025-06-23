@@ -1,14 +1,30 @@
 import os
 import instaloader
+import logging
 
 
 def download_video(url, username=None, password=None):
+    """
+    Функция для скачивания видео с ссылки instagram
+    Есть возможность программного входа в аккаунт
+    Скачивание происходит в папку downloads
+    Функция возвращает путь к видео и его название
+    """
+
     if not url.startswith("https://www.instagram.com/reel/"):
         raise ValueError("Not an Instagram Reels link")
 
     try:
-        loader = instaloader.Instaloader()
+        logging.getLogger("instaloader").setLevel(logging.CRITICAL)
 
+        loader = instaloader.Instaloader(
+            download_pictures=False,
+            download_video_thumbnails=False,
+            download_geotags=False,
+            download_comments=False,
+            save_metadata=False,
+            quiet=True
+        )
         # Авторизация, если переданы логин и пароль
         if username and password:
             loader.login(username, password)

@@ -2,7 +2,23 @@ import yt_dlp
 import os
 
 
+class QuietLogger:
+    def debug(self, msg):
+        pass
+
+    def warning(self, msg):
+        pass
+
+    def error(self, msg):
+        pass
+
+
 def download_video(url):
+    """
+    Функция для скачивания видео с ссылки на ютуб
+    Скачивание происходит в папку downloads
+    Функция возвращает путь к видео и его название
+    """
     print("скачиваю", url)
     if (
         not url.startswith("https://www.youtube.com/shorts")
@@ -37,7 +53,11 @@ def download_video(url):
                 "fast",
             ],
             "merge_output_format": "mp4",
-        }
+            "logger": QuietLogger(),  
+            "progress_hooks": [lambda d: None],  
+            "quiet": True,
+            "no_warnings": True
+            }
 
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
             info_dict = ydl.extract_info(url, download=True)
