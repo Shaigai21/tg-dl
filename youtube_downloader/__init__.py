@@ -3,6 +3,11 @@ import os
 
 
 def download_video(url):
+    """
+    Функция для скачивания видео с ссылки на ютуб
+    Скачивание происходит в папку downloads
+    Функция возвращает путь к видео и его название
+    """
     print("скачиваю", url)
     if (
         not url.startswith("https://www.youtube.com/shorts")

@@ -3,6 +3,12 @@ import os
 
 
 def download_video(url):
+    """
+    Функция для скачивания видео с tiktok ссылки
+    Скачивание происходит в папку downloads
+    Функция возвращает путь к видео и его название
+    """
+
     try:
         # Папка для загрузки
         download_folder = "tg_dl_downloads"

@@ -30,6 +30,9 @@ def read_json_file(file_path: str):
 
 class Bot:
     def __init__(self, token: str):
+        """
+        Инициализирует бота с заданным токеном и регистрирует обработчики.
+        """
         self.bot = telebot.TeleBot(token)
         self.register_handlers()
 
