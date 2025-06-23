@@ -11,10 +11,20 @@ def download_video(url):
 
         # Настройки для yt-dlp
         ydl_opts = {
-            'format': 'bestvideo+bestaudio/best',
-            'retries': 20,
-            'outtmpl': f'{download_folder}/%(title)s.%(ext)s',
-            'noplaylist': True,
+           'format': 'bestvideo+bestaudio/best',
+           'retries': 20,
+           'outtmpl': f'{download_folder}/%(title)s.%(ext)s',
+           'noplaylist': True,
+           'postprocessors': [{
+               'key': 'FFmpegVideoConvertor',
+               'preferedformat': 'mp4'}],
+           'postprocessor_args': [
+               '-c:v', 'libx264',
+               '-c:a', 'aac',
+               '-b:a', '192k',
+               '-preset', 'fast'
+           ],
+           'merge_output_format': 'mp4',
         }
 
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
