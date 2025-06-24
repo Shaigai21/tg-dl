@@ -11,7 +11,7 @@ def download_video(url, username=None, password=None):
     Функция возвращает путь к видео и его название
     """
 
-    if not url.startswith("https://www.instagram.com/reel/"):
+    if not url.startswith("https://www.instagram.com/reel"):
         raise ValueError("Not an Instagram Reels link")
 
     try:

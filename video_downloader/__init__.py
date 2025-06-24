@@ -1,9 +1,9 @@
 import json
 import telebot
 import os
-from insta_downloader import download_video as insta_download
-from tiktok_downloader import download_video as tiktok_download
-from youtube_downloader import download_video as youtube_download
+from .tiktok_downloader import download_video as tiktok_download
+from .insta_downloader import download_video as insta_download
+from .youtube_downloader import download_video as youtube_download
 
 
 def _(text):

@@ -64,7 +64,8 @@ def download_video(url):
             video_title = info_dict.get("title", "video")
             video_filename = ydl.prepare_filename(info_dict)
 
-    except Exception:
+    except Exception as e:
+        print(str(e))
         raise NameError("Download error")
 
     return video_filename, video_title
