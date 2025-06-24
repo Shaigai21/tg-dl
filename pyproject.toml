@@ -2,9 +2,7 @@
 name = "tgsaler"
 version = "1.0"
 description = "Video downloader bot"
-authors = [
-	Виктор Мороз, Андрей Поваров, Давид Чиковани 
-	]
+authors = ["Виктор Мороз", "Андрей Поваров", "Давид Чиковани"]
 readme = "README.md"
 keywords = ["telegram", "bot", "download", "youtube", "instagramm", "tiktok"]
 classifiers = [
@@ -29,6 +27,6 @@ package-dir = {"tgsaler" = "video_downloader"}
 "video_downloader" = ["**"]
 
 [project.scripts]
-video_downloader= "video_downloader.config_creator.__main__:start_main"
-video_downloader= "video_downloader.__main__:start_main"
+#video_downloader = "video_downloader.config_creator.__main__:start_main"
+video_downloader = "video_downloader.__main__:start_main"
 
