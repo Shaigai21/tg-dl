@@ -12,6 +12,7 @@ yt-dlp = "*"
 flake8 = "*"
 pycodestyle = "*"
 pydocstyle = "*"
+babel = "*"
 
 [dev-packages]
 
