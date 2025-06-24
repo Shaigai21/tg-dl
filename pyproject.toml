@@ -1,0 +1,34 @@
+[project]
+name = "tgsaler"
+version = "1.0"
+description = "Video downloader bot"
+authors = [
+	Виктор Мороз, Андрей Поваров, Давид Чиковани 
+	]
+readme = "README.md"
+keywords = ["telegram", "bot", "download", "youtube", "instagramm", "tiktok"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+]
+dependencies = [
+    "setuptools",
+    "psycopg2",
+	"pyTelegramBotAPI",
+    "prettytable"
+]
+[build-system]
+requires=["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["video_downloader"]
+include-package-data = true
+package-dir = {"tgsaler" = "video_downloader"}
+
+[tool.setuptools.package-data]
+"video_downloader" = ["**"]
+
+[project.scripts]
+video_downloader= "video_downloader.config_creator.__main__:start_main"
+video_downloader= "video_downloader.__main__:start_main"
+
