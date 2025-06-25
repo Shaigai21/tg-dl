@@ -1,3 +1,3 @@
-.. automodule:: video_downloader_bot.tiktok_downloader
+.. automodule:: video_downloader.tiktok_downloader
    :members:
    :undoc-members:

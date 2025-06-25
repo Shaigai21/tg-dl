@@ -1,3 +1,3 @@
-.. automodule:: video_downloader_bot.insta_downloader
+.. automodule:: video_downloader.insta_downloader
    :members:
    :undoc-members:

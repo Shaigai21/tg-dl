@@ -1,3 +1,3 @@
-.. automodule:: video_downloader_bot
+.. automodule:: video_downloader
    :members:
    :undoc-members:
