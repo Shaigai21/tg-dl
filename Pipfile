@@ -13,6 +13,7 @@ flake8 = "*"
 pycodestyle = "*"
 pydocstyle = "*"
 babel = "*"
+black = "*"
 
 [dev-packages]
 

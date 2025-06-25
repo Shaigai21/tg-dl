@@ -1,6 +1,7 @@
 import yt_dlp
 import os
 
+
 class QuietLogger:
     def debug(self, msg):
         pass
@@ -12,14 +13,13 @@ class QuietLogger:
         pass
 
 
-
 def download_video(url):
     """
-    Функция для скачивания видео с tiktok ссылки
+    Функция для скачивания видео с tiktok ссылки.
+
     Скачивание происходит в папку downloads
     Функция возвращает путь к видео и его название
     """
-
     try:
         # Папка для загрузки
         download_folder = "tg_dl_downloads"
@@ -46,10 +46,10 @@ def download_video(url):
                 "fast",
             ],
             "merge_output_format": "mp4",
-            "logger": QuietLogger(),  
-            "progress_hooks": [lambda d: None],  
+            "logger": QuietLogger(),
+            "progress_hooks": [lambda d: None],
             "quiet": True,
-            "no_warnings": True
+            "no_warnings": True,
         }
 
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:

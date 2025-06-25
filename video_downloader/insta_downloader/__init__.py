@@ -5,12 +5,12 @@ import logging
 
 def download_video(url, username=None, password=None):
     """
-    Функция для скачивания видео с ссылки instagram
+    Функция для скачивания видео с ссылки instagram.
+
     Есть возможность программного входа в аккаунт
     Скачивание происходит в папку downloads
     Функция возвращает путь к видео и его название
     """
-
     if not url.startswith("https://www.instagram.com/reel"):
         raise ValueError("Not an Instagram Reels link")
 
@@ -23,7 +23,7 @@ def download_video(url, username=None, password=None):
             download_geotags=False,
             download_comments=False,
             save_metadata=False,
-            quiet=True
+            quiet=True,
         )
         # Авторизация, если переданы логин и пароль
         if username and password:

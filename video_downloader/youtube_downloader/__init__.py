@@ -15,7 +15,8 @@ class QuietLogger:
 
 def download_video(url):
     """
-    Функция для скачивания видео с ссылки на ютуб
+    Функция для скачивания видео с ссылки на ютуб.
+
     Скачивание происходит в папку downloads
     Функция возвращает путь к видео и его название
     """
@@ -53,12 +54,12 @@ def download_video(url):
                 "fast",
             ],
             "merge_output_format": "mp4",
-            "logger": QuietLogger(),  
-            "progress_hooks": [lambda d: None],  
+            "logger": QuietLogger(),
+            "progress_hooks": [lambda d: None],
             "quiet": True,
             "no_warnings": True,
-            "cookiesfrombrowser": ('firefox', )
-            }
+            "cookiesfrombrowser": ("firefox",),
+        }
 
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
             info_dict = ydl.extract_info(url, download=True)
