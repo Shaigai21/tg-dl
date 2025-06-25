@@ -56,7 +56,8 @@ def download_video(url):
             "logger": QuietLogger(),  
             "progress_hooks": [lambda d: None],  
             "quiet": True,
-            "no_warnings": True
+            "no_warnings": True,
+            "cookiesfrombrowser": ('firefox', )
             }
 
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
