@@ -1,3 +1,4 @@
+import gettext
 import json
 import telebot
 import os
@@ -5,9 +6,17 @@ from .tiktok_downloader import download_video as tiktok_download
 from .insta_downloader import download_video as insta_download
 from .youtube_downloader import download_video as youtube_download
 
+locales_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "locales"))
+curloc = "en"
 
-def _(text):
-    return text
+LOCALES = {
+    "en": gettext.translation("video_downloader", locales_dir, ["en"]),
+    "ru": gettext.NullTranslations(),
+}
+
+def _(*args):
+    return LOCALES[curloc].gettext(*args)
+
 
 
 def read_json_file(file_path: str):
@@ -73,7 +82,7 @@ class Bot:
 
         # Только в ЛС показываем "Скачиваем..."
         if message.chat.type == 'private':
-            status_msg = self.bot.reply_to(message, _(f"⏳ Скачиваем видео с {service}..."))
+            status_msg = self.bot.reply_to(message, _("⏳ Скачиваем видео с {service}...").format(service=service))
 
         try:
             video_path, video_name = download_func(url)

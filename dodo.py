@@ -1,11 +1,12 @@
 import glob
+from pathlib import Path
 from doit.tools import create_folder
 from doit.action import CmdAction
 import os
 
 HTMLINDEX = "docs/_build/html/index.html"
-PODEST = "video_downloader/locales"
-POTFILE = "YTIdownl.pot"
+PODEST = Path("video_downloader/locales")
+POTFILE = "video_downloader.pot"
 
 
 def task_html():
@@ -32,7 +33,7 @@ def task_html():
 def task_pot():
     """Re-create .pot ."""
     return {
-        "actions": [f"pybabel extract -o {POTFILE} YTIdownl"],
+        "actions": [f"pybabel extract -o {POTFILE} video_downloader"],
         "file_dep": ["video_downloader/__init__.py"],
         "targets": [f"{POTFILE}"],
     }
@@ -42,11 +43,11 @@ def task_po():
     """Update locales."""
     return {
         "actions": [
-            (create_folder, [f"{PODEST}/ru/LC_MESSAGES"]),
-            f"pybabel update --ignore-pot-creation-date -D YTIdownl -d {PODEST} -i {POTFILE}",
+            (create_folder, [f"{PODEST}/en/LC_MESSAGES"]),
+            f"pybabel update --ignore-pot-creation-date -D video_downloader -d {PODEST} -i {POTFILE}",
         ],
         "file_dep": [f"{POTFILE}"],
-        "targets": [f"{PODEST}/ru/LC_MESSAGES/YTIdownl.po"],
+        "targets": [f"{PODEST}/en/LC_MESSAGES/video_downloader.po"],
     }
 
 
@@ -54,11 +55,11 @@ def task_mo():
     """Compile locales."""
     return {
         "actions": [
-            (create_folder, [f"{PODEST}/ru/LC_MESSAGES"]),
-            f"pybabel compile -D tgsaler -l ru -i video_downloader/locales/ru/LC_MESSAGES/YTIdownl.po -d {PODEST}",
+            (create_folder, [f"{PODEST}/en/LC_MESSAGES"]),
+            f"pybabel compile -D video_downloader -l en -i video_downloader/locales/en/LC_MESSAGES/video_downloader.po -d {PODEST}",
         ],
-        "file_dep": [f"{PODEST}/ru/LC_MESSAGES/tgsaler.po"],
-        "targets": [f"{PODEST}/ru/LC_MESSAGES/tgsaler.mo"],
+        "file_dep": [f"{PODEST}/en/LC_MESSAGES/video_downloader.po"],
+        "targets": [f"{PODEST}/en/LC_MESSAGES/video_downloader.mo"],
     }
 
 
@@ -67,8 +68,7 @@ def task_test():
     return {
         "actions": ["python3 -m unittest -v"],
         "file_dep": [
-            f"{PODEST}/ru/LC_MESSAGES/YTIdownl.mo",
-            *glob.glob("tgsaler/*.py"),
+            *glob.glob("video_downloader/*.py"),
             "test.py",
         ],
     }
