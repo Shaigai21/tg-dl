@@ -20,6 +20,7 @@ def download_video(url):
     Скачивание происходит в папку tg_dl_downloads
     Функция возвращает путь к видео и его название
     """
+    print("скачиваю", url)
     try:
         # Папка для загрузки
         download_folder = "tg_dl_downloads"

@@ -11,6 +11,7 @@ def download_video(url, creds=None):
     Скачивание происходит в папку tg_dl_downloads
     Функция возвращает путь к видео и его название
     """
+    print("скачиваю", url)
     if not url.startswith("https://www.instagram.com/reel"):
         raise ValueError("Not an Instagram Reels link")
 

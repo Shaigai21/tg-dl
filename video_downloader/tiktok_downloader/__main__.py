@@ -1,5 +1,3 @@
 from . import download_video
 
-video = "https://vt.tiktok.com/ZSMTn5LPm/"
-
-download_video(video)
+print(download_video("https://www.tiktok.com/@lil.kich/video/7475589331386682632"))
