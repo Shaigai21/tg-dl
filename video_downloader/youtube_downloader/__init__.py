@@ -17,7 +17,7 @@ def download_video(url):
     """
     Функция для скачивания видео с ссылки на ютуб.
 
-    Скачивание происходит в папку downloads
+    Скачивание происходит в папку tg_dl_downloads
     Функция возвращает путь к видео и его название
     """
     print("скачиваю", url)
@@ -46,6 +46,7 @@ def download_video(url):
             "postprocessor_args": [
                 "-c:v",
                 "libx264",
+                "-crf", "28",
                 "-c:a",
                 "aac",
                 "-b:a",

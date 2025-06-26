@@ -8,7 +8,7 @@ def download_video(url, creds=None):
     Функция для скачивания видео с ссылки instagram.
 
     Есть возможность программного входа в аккаунт
-    Скачивание происходит в папку downloads
+    Скачивание происходит в папку tg_dl_downloads
     Функция возвращает путь к видео и его название
     """
     if not url.startswith("https://www.instagram.com/reel"):
@@ -29,12 +29,7 @@ def download_video(url, creds=None):
         if creds:
             username, password = creds.split(":")
             if username and password:
-                try:
-                    loader.login(username, password)
-                except instaloader.BadCredentialsException as e:
-                    print("Invalid username or password")
-                except Exception as e:
-                    print(str(e))
+                loader.login(username, password)
             else:
                 print("Username and password are not in provided format.")
         else:
