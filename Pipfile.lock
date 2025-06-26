@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "9647b8b16d817dfe9a8827aaf307019ab35a0b934233dc25dc9ad1888f3bcffb"
+            "sha256": "48c56f480b4bf91771b5cde2cae468e0604614b234bf5b8c35ecbc474a4bd968"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -61,6 +61,15 @@
             "index": "pypi",
             "markers": "python_version >= '3.9'",
             "version": "==25.1.0"
+        },
+        "build": {
+            "hashes": [
+                "sha256:1d61c0887fa860c01971625baae8bdd338e517b836a2f70dd1f7aa3a6b2fc5b5",
+                "sha256:b36993e92ca9375a219c99e606a122ff365a760a2d4bba0caa09bd5278b608b7"
+            ],
+            "index": "pypi",
+            "markers": "python_version >= '3.8'",
+            "version": "==1.2.2.post1"
         },
         "certifi": {
             "hashes": [
@@ -392,6 +401,14 @@
             "markers": "python_version >= '3.8'",
             "version": "==2.19.2"
         },
+        "pyproject-hooks": {
+            "hashes": [
+                "sha256:1e859bd5c40fae9448642dd871adf459e5e2084186e8d2c2a79a824c970da1f8",
+                "sha256:9e5c6bfa8dcc30091c74b0cf803c81fdd29d94f01992a7707bc97babb1141913"
+            ],
+            "markers": "python_version >= '3.7'",
+            "version": "==1.2.0"
+        },
         "pytelegrambotapi": {
             "hashes": [
                 "sha256:d89362a34eaaa87b0aff6b2f5445a3af082f04193dcaadb481562def84c59ee9",
@@ -499,12 +516,12 @@
         },
         "yt-dlp": {
             "hashes": [
-                "sha256:751f53a3b61353522bf805fa30bbcbd16666126537e39706eab4f8c368f111ac",
-                "sha256:ebdfda9ffa807f6a26aed7c8f906e5557cd06b4c388dc547df1ec2078631fca8"
+                "sha256:1eb31c9a47d56c7433be23a6ae084c640bd4e14961ad43076927ef05280871ea",
+                "sha256:242b648e1a18ab04bdd4cc175a317fe8ec3ad7d0175eee9f981912624b3d6c8b"
             ],
             "index": "pypi",
             "markers": "python_version >= '3.9'",
-            "version": "==2025.6.9"
+            "version": "==2025.6.25"
         },
         "zipp": {
             "hashes": [

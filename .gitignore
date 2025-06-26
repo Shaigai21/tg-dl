@@ -4,3 +4,5 @@ __pycache__
 *db
 *build
 *.mo
+*.egg-info
+dist
