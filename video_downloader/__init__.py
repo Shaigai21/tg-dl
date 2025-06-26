@@ -7,7 +7,7 @@ from .insta_downloader import download_video as insta_download
 from .youtube_downloader import download_video as youtube_download
 
 locales_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "locales"))
-curloc = "en"
+curloc = "ru"
 
 LOCALES = {
     "en": gettext.translation("video_downloader", locales_dir, ["en"]),
@@ -36,10 +36,11 @@ def read_json_file(file_path: str):
 
 
 class Bot:
-    def __init__(self, token: str):
+    def __init__(self, token: str, insta_creds: str = None):
         """Инициализирует бота с заданным токеном и регистрирует обработчики."""
         self.bot = telebot.TeleBot(token)
         self.register_handlers()
+        self.insta_creds = insta_creds
 
     def start(self, message):
         """
@@ -92,7 +93,10 @@ class Bot:
             )
 
         try:
-            video_path, video_name = download_func(url)
+            if service == "Instagram" and self.insta_creds:
+                video_path, video_name = insta_download(url, creds=self.insta_creds)
+            else:
+                video_path, video_name = download_func(url)
 
             if not video_path or not os.path.exists(video_path):
                 raise FileNotFoundError(

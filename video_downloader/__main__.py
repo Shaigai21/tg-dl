@@ -1,6 +1,26 @@
 from . import Bot, read_json_file
+import os
+import json
 
-properties = read_json_file("config.json")
-print(properties)
-bot = Bot(properties["TOKEN"])
-bot.run()
+
+def create_config():
+    """Создание файла конфигурации."""
+    props = {}
+    config_path = os.path.join(os.getcwd(), "config.json")
+    with open(
+        config_path,
+        "w+",
+    ) as f:
+        props["TOKEN"] = input("Введите токен бота:\n")
+        props["INSTA_CREDS"] = input("Введите реквизиты от аккаунта в Instagramm в формате логин:пароль\n")
+        print(json.dumps(props), file=f)
+
+def main():
+    create_config()
+    properties = read_json_file("config.json")
+    print(properties)
+    bot = Bot(properties["TOKEN"], properties["INSTA_CREDS"])
+    bot.run()
+
+if __name__ == "__main__":
+    main()

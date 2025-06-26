@@ -3,7 +3,7 @@ import instaloader
 import logging
 
 
-def download_video(url, username=None, password=None):
+def download_video(url, creds=None):
     """
     Функция для скачивания видео с ссылки instagram.
 
@@ -26,8 +26,17 @@ def download_video(url, username=None, password=None):
             quiet=True,
         )
         # Авторизация, если переданы логин и пароль
-        if username and password:
-            loader.login(username, password)
+        if creds:
+            username, password = creds.split(":")
+            if username and password:
+                try:
+                    loader.login(username, password)
+                except instaloader.BadCredentialsException as e:
+                    print("Invalid username or password")
+                except Exception as e:
+                    print(str(e))
+            else:
+                print("Username and password are not in provided format.")
         else:
             print("Username and password are required for login.")
             print("Working without login")
