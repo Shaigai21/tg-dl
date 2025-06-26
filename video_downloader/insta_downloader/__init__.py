@@ -18,13 +18,18 @@ def download_video(url, creds=None):
     try:
         logging.getLogger("instaloader").setLevel(logging.CRITICAL)
 
-        loader = instaloader.Instaloader(
+        class CustomInstaloader(instaloader.Instaloader):
+            def format_filename(self, post, target=None):
+                return f"{post.shortcode}"
+
+        loader = CustomInstaloader(
             download_pictures=False,
             download_video_thumbnails=False,
             download_geotags=False,
             download_comments=False,
             save_metadata=False,
             quiet=True,
+            filename_pattern="{shortcode}"
         )
         # Авторизация, если переданы логин и пароль
         if creds:

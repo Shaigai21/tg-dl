@@ -100,12 +100,12 @@ class Bot:
                 video_path, video_name = download_func(url)
 
             print(video_path)
-            """ if not video_path or not os.path.exists(video_path):
+            if not video_path or not os.path.exists(video_path):
                 raise FileNotFoundError(
                     _(
                         "При загрузке произошла ошибка. Проверьте корректность ссылки и повторите."
                     )
-                ) """
+                )
 
             with open(video_path, "rb") as video_file:
                 self.bot.send_video(
