@@ -24,7 +24,7 @@ include-package-data = true
 package-dir = {video_downloader = "video_downloader"}
 
 [tool.setuptools.package-data]
-"video_downloader" = ["*py", "*.mo"]
+"video_downloader" = ["*.py", "locales/*/*/video_downloader.mo", "youtube_downloader/*py", "insta_downloader/*py", "tiktok_downloader/*py"]
 
 [project.scripts]
 video_downloader = "video_downloader.__main__:main"

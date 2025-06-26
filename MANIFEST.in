@@ -1,0 +1,4 @@
+graft docs/_build
+prune *egg-info
+recursive-include video_downloader/*py
+recursive-include video_downloader/locales/*

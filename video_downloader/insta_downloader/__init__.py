@@ -29,7 +29,7 @@ def download_video(url, creds=None):
             download_comments=False,
             save_metadata=False,
             quiet=True,
-            filename_pattern="{shortcode}"
+            filename_pattern="{shortcode}",
         )
         # Авторизация, если переданы логин и пароль
         if creds:

@@ -1,3 +1,4 @@
+import gettext
 from unittest.mock import MagicMock
 from video_downloader.insta_downloader import download_video as insta_download
 from video_downloader.youtube_downloader import download_video as youtube_download
@@ -35,11 +36,21 @@ class Test_link_check(unittest.TestCase):
             self.assertNotEqual(str(e), str(ValueError("Not youtube link")))
 
 
+LOCALES = {
+    "ru": gettext.NullTranslations(),
+}
+
+
+def _(*args):
+    return LOCALES["ru"].gettext(*args)
+
+
 class Test_bot(unittest.TestCase):
     def setUp(self) -> None:
         self.res = None
         self.Bot = Bot.__new__(Bot)
         self.Bot.bot = MagicMock()
+        self.Bot._ = _
         self.Bot.bot.reply_to = lambda y, x: setattr(self, "res", x)
         return super().setUp()
 
@@ -68,6 +79,7 @@ class Test_bot(unittest.TestCase):
             chat = MagicMock()
             chat.type = "not private"
             self.assertEqual(None, self.res)
+
         self.Bot.handle_video_links(fakemessage())
         self.assertNotEqual(
             "❌ Неподдерживаемый сервис. Отправьте ссылку YouTube, Instagram или TikTok.",

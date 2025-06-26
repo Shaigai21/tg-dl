@@ -1,7 +1,6 @@
 import glob
 from pathlib import Path
 from doit.tools import create_folder
-from doit.action import CmdAction
 import os
 
 HTMLINDEX = "docs/_build/html/index.html"
@@ -11,16 +10,14 @@ POTFILE = "video_downloader.pot"
 
 def task_html():
     """Gen html docs"""
-    all_files = (
-        glob.glob("./docs/source/**", recursive=True) +
-        glob.glob("./video_downloader/**", recursive=True)
+    all_files = glob.glob("./docs/source/**", recursive=True) + glob.glob(
+        "./video_downloader/**", recursive=True
     )
     file_dep = [
-        path for path in all_files
-        if os.path.isfile(path) and (
-            path.endswith(".py") or 
-            path.startswith("./docs/source/")
-        )
+        path
+        for path in all_files
+        if os.path.isfile(path)
+        and (path.endswith(".py") or path.startswith("./docs/source/"))
     ]
     return {
         "actions": ['sphinx-build -M html "./docs/source" "docs/_build"'],
@@ -78,7 +75,7 @@ def task_sdist():
     """Initialises project"""
     return {
         "actions": ["python3 -m build --sdist"],
-        "targets": ["dist/YTIdownl.tar.gz"],
+        "targets": ["dist/video_downloader.tar.gz"],
         "file_dep": [
             "MANIFEST.in",
             "pyproject.toml",
@@ -90,12 +87,11 @@ def task_sdist():
 def task_wheel():
     """Builds wheel"""
     return {
-        "actions": ["python3 -m build -n --wheel"],
+        "actions": ["python3 -m build --wheel"],
         "file_dep": [
             "MANIFEST.in",
             "pyproject.toml",
             *glob.glob("./video_downloader/*.py"),
-            "dist/YTIdownl-1.0.tar.gz",
         ],
         "verbosity": 0,
     }
