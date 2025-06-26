@@ -39,6 +39,7 @@ class Bot:
 
         def _(*args):
             return LOCALES[locale].gettext(*args)
+
         self._ = _
 
     def start(self, message):
@@ -88,7 +89,8 @@ class Bot:
         # Только в ЛС показываем "Скачиваем..."
         if message.chat.type == "private":
             status_msg = self.bot.reply_to(
-                message, self._("⏳ Скачиваем видео с {service}...").format(service=service)
+                message,
+                self._("⏳ Скачиваем видео с {service}...").format(service=service),
             )
 
         try:

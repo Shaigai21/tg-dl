@@ -46,7 +46,8 @@ def download_video(url):
             "postprocessor_args": [
                 "-c:v",
                 "libx264",
-                "-crf", "28",
+                "-crf",
+                "35",
                 "-c:a",
                 "aac",
                 "-b:a",
