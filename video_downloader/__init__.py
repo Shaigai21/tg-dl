@@ -102,7 +102,7 @@ class Bot:
             print(video_path)
             if not video_path or not os.path.exists(video_path):
                 raise FileNotFoundError(
-                    _(
+                    self._(
                         "При загрузке произошла ошибка. Проверьте корректность ссылки и повторите."
                     )
                 )

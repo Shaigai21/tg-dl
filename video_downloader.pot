@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-06-26 02:38+0300\n"
+"POT-Creation-Date: 2025-06-26 18:18+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,13 +17,13 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.17.0\n"
 
-#: video_downloader/__init__.py:56
+#: video_downloader/__init__.py:54
 msgid ""
 "Привет! Отправь мне ссылку на YouTube Shorts, Instagram или TikTok, и я "
 "скачаю видео для тебя."
 msgstr ""
 
-#: video_downloader/__init__.py:83
+#: video_downloader/__init__.py:82
 msgid "❌ Неподдерживаемый сервис. Отправьте ссылку YouTube, Instagram или TikTok."
 msgstr ""
 
@@ -32,7 +32,7 @@ msgstr ""
 msgid "⏳ Скачиваем видео с {service}..."
 msgstr ""
 
-#: video_downloader/__init__.py:102
+#: video_downloader/__init__.py:106
 msgid "При загрузке произошла ошибка. Проверьте корректность ссылки и повторите."
 msgstr ""
 
