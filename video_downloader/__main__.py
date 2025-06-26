@@ -12,14 +12,17 @@ def create_config():
         "w+",
     ) as f:
         props["TOKEN"] = input("Введите токен бота:\n")
-        props["INSTA_CREDS"] = input("Введите реквизиты от аккаунта в Instagramm в формате логин:пароль\n")
+        props["INSTA_CREDS"] = input("Введите реквизиты от аккаунта в Instagram в формате логин:пароль\n")
+        props["LOCALE"] = input("Выберите язык:\n")
+        if props["LOCALE"] != "en":
+            props["LOCALE"] = "ru"
         print(json.dumps(props), file=f)
 
 def main():
     create_config()
     properties = read_json_file("config.json")
     print(properties)
-    bot = Bot(properties["TOKEN"], properties["INSTA_CREDS"])
+    bot = Bot(properties["TOKEN"], properties["INSTA_CREDS"], properties["LOCALE"])
     bot.run()
 
 if __name__ == "__main__":

@@ -7,16 +7,11 @@ from .insta_downloader import download_video as insta_download
 from .youtube_downloader import download_video as youtube_download
 
 locales_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "locales"))
-curloc = "ru"
 
 LOCALES = {
     "en": gettext.translation("video_downloader", locales_dir, ["en"]),
     "ru": gettext.NullTranslations(),
 }
-
-
-def _(*args):
-    return LOCALES[curloc].gettext(*args)
 
 
 def read_json_file(file_path: str):
@@ -36,11 +31,15 @@ def read_json_file(file_path: str):
 
 
 class Bot:
-    def __init__(self, token: str, insta_creds: str = None):
+    def __init__(self, token: str, insta_creds: str = None, locale: str = "ru"):
         """Инициализирует бота с заданным токеном и регистрирует обработчики."""
         self.bot = telebot.TeleBot(token)
         self.register_handlers()
         self.insta_creds = insta_creds
+
+        def _(*args):
+            return LOCALES[locale].gettext(*args)
+        self._ = _
 
     def start(self, message):
         """
@@ -50,7 +49,7 @@ class Bot:
         """
         self.bot.reply_to(
             message,
-            _(
+            self._(
                 "Привет! Отправь мне ссылку на YouTube Shorts, Instagram или TikTok, и я скачаю видео для тебя."
             ),
         )
@@ -78,7 +77,7 @@ class Bot:
             if message.chat.type == "private":
                 self.bot.reply_to(
                     message,
-                    _(
+                    self._(
                         "❌ Неподдерживаемый сервис. Отправьте ссылку YouTube, Instagram или TikTok."
                     ),
                 )
@@ -89,7 +88,7 @@ class Bot:
         # Только в ЛС показываем "Скачиваем..."
         if message.chat.type == "private":
             status_msg = self.bot.reply_to(
-                message, _("⏳ Скачиваем видео с {service}...").format(service=service)
+                message, self._("⏳ Скачиваем видео с {service}...").format(service=service)
             )
 
         try:
@@ -98,12 +97,13 @@ class Bot:
             else:
                 video_path, video_name = download_func(url)
 
-            if not video_path or not os.path.exists(video_path):
+            print(video_path)
+            """ if not video_path or not os.path.exists(video_path):
                 raise FileNotFoundError(
                     _(
                         "При загрузке произошла ошибка. Проверьте корректность ссылки и повторите."
                     )
-                )
+                ) """
 
             with open(video_path, "rb") as video_file:
                 self.bot.send_video(
@@ -113,14 +113,12 @@ class Bot:
                     reply_to_message_id=message.message_id,
                 )
 
-            os.remove(video_path)
-
             if status_msg:
                 self.bot.delete_message(status_msg.chat.id, status_msg.message_id)
 
         except Exception as e:
             if message.chat.type == "private":
-                error_msg = _(f"❌ Ошибка при загрузке видео: {str(e)}")
+                error_msg = self._(f"❌ Ошибка при загрузке видео: {str(e)}")
                 if status_msg:
                     self.bot.edit_message_text(
                         chat_id=status_msg.chat.id,
